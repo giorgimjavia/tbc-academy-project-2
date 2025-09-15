@@ -1,5 +1,154 @@
 package steps;
 
-public class HomeSteps {
+import com.microsoft.playwright.Page;
+import data.Constants;
+import pages.HomePage;
 
+import java.io.File;
+
+public class HomeSteps {
+    Page page;
+    HomePage homePage;
+
+    public HomeSteps(Page page) {
+        this.page = page;
+        this.homePage = new HomePage(page);
+    }
+
+    public HomeSteps openHomePage() {
+        page.navigate(Constants.TBC_URL);
+        return this;
+    }
+
+    public HomeSteps rejectCookies() {
+        homePage.rejectCookies.click();
+        return this;
+    }
+
+    public HomeSteps openMegaMenuNavbar() {
+        if (Config.isMobileDevice()) {
+            homePage.hamburgerMenu.click();
+        } else {
+            homePage.megaMenuNavbar.first().hover();
+        }
+        return this;
+    }
+
+    public HomeSteps navigateToLocationsPage() {
+        homePage.locationsLink
+                .click();
+        return this;
+    }
+
+    public HomeSteps navigateToOffersPage() {
+        homePage.offersLink.click();
+        return this;
+    }
+
+    public HomeSteps navigateToCurrencyExchangePage() {
+        homePage.currencyExchangeLink.click();
+        return this;
+    }
+
+    // ----------------------- SiteSearchTest ------------------------ \\
+    public HomeSteps clickSearchButton() {
+        homePage.searchBtn.click();
+        return this;
+    }
+
+    public HomeSteps fillNonValidDataInSearch(String value) {
+        homePage.searchBar.fill(value);
+        return this;
+    }
+
+    public HomeSteps validateEmptyResults() {
+        // Playwright style assertion (instead of shouldHave)
+        String text = homePage.emptyResult.innerText();
+        if (!text.contains(Constants.EMPTY_RESULT_MESSAGE)) {
+            throw new AssertionError("Expected empty result message not found");
+        }
+        return this;
+    }
+
+    public HomeSteps clearSearchInput() {
+        homePage.searchBar.fill("");
+        return this;
+    }
+
+    public HomeSteps fillSearchBar(String value) {
+        homePage.searchBar.fill(value);
+        return this;
+    }
+
+    public HomeSteps validateListResults() {
+        int count = homePage.resultsList.count();
+        if (count <= 0) {
+            throw new AssertionError("Expected results list to have items");
+        }
+        boolean hasMatch = homePage.resultsList
+                .allInnerTexts()
+                .stream()
+                .anyMatch(text -> text.contains(Constants.SEARCH_DATA));
+        if (!hasMatch) {
+            throw new AssertionError("Expected search result not found: " + Constants.SEARCH_DATA);
+        }
+        return this;
+    }
+
+    public HomeSteps navigateToResultedPage() {
+        if (homePage.resultListsBtn.count() > 0) {
+            homePage.resultListsBtn.first().click();
+        }
+        return this;
+    }
+
+    // ----------------------- ProductDetailsTest ------------------------ \\
+    public HomeSteps verifyExternalLinkTarget() {
+        String target = homePage.productBlank.getAttribute("target");
+        if (!"_blank".equals(target)) {
+            throw new AssertionError("Expected link target='_blank', but got: " + target);
+        }
+        return this;
+    }
+
+    public HomeSteps verifyCTAButton() {
+        String text = homePage.productBlankButton.innerText();
+        if (!text.contains(Constants.READ_MORE_TXT)) {
+            throw new AssertionError("CTA button text mismatch. Found: " + text);
+        }
+        return this;
+    }
+
+    public HomeSteps navigateToProductPage() {
+        homePage.productBlankButton.click();
+        return this;
+    }
+
+    // ----------------------- ChatbotInteractionTest ------------------------ \\
+    public HomeSteps openQuickAction() {
+        homePage.quickActionBtn.click();
+        return this;
+    }
+
+    public HomeSteps openChatBot() {
+        homePage.chatbotBtn.click();
+        return this;
+    }
+
+    public HomeSteps sendMessageToChatbot(String value) {
+        page.frameLocator(homePage.chatbotIFrame)
+                .locator(homePage.chatbotInput.selector())
+                .fill(value + "\n"); // simulate ENTER
+        return this;
+    }
+
+    public HomeSteps uploadingFile(File file) {
+        homePage.uploadFileInput.setInputFiles(file.toPath());
+        return this;
+    }
+
+    public HomeSteps closeChatbot() {
+        homePage.closeChatbotBtn.click();
+        return this;
+    }
 }
