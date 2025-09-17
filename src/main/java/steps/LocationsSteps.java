@@ -99,9 +99,14 @@ public class LocationsSteps {
     public LocationsSteps chooseCityWithDropdown(String value) {
         locationsPage.dropdown.click();
         locationsPage.dropdownList
-                .filter(new Locator.FilterOptions().setHasText(value))
-                .first()
-                .click();
+                .all()
+                .stream()
+                .filter(el -> {
+                    String text = el.innerText().trim();
+                    return text.equals(value);
+                })
+                .findFirst()
+                .ifPresent(Locator::click);
         return this;
     }
 

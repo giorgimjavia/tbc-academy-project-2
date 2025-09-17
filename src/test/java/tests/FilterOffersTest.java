@@ -7,7 +7,7 @@ import steps.AllOffersSteps;
 import steps.HomeSteps;
 import steps.OffersSteps;
 
-public class FillOffersTest extends BaseTest {
+public class FilterOffersTest extends BaseTest {
     HomeSteps homeSteps;
     OffersSteps offersSteps;
     AllOffersSteps allOffersSteps;

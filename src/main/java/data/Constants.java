@@ -7,7 +7,7 @@ public class Constants {
     public static final String CITY_DATA = "VANI";
     public static final String CITY_LOCATION_DATA = " #2 Tavisupleba Str. ";
     public static final String SEARCH_DATA = "loan";
-    public static final String NON_RESULT_DATA = "test";
+    public static final String NON_RESULT_DATA = "nonvalid";
     public static final String EMPTY_RESULT_MESSAGE = "We couldn't find anything.";
     public static final String LOCATIONS_TXT = "Locations";
     public static final String CURRENCY_EXCHANGE_TXT = "Currency Exchange";
@@ -21,5 +21,5 @@ public class Constants {
     public static final String TWENTY_FOUR_SEVEN_TX = "24/7";
     public static final String OPEN_NOW_TXT = "Open Now";
     public static final String CHATBOT_MESSAGE = "Hello, Can you help me?";
-    public static final String FILE_LOCATION = "C:\\Users\\User\\IdeaProjects\\tbc-academy-project\\src\\main\\java\\resources\\document.docx";
+    public static final String FILE_LOCATION = "C:\\Users\\User\\IdeaProjects\\tbc-academy-project-2\\src\\main\\resources\\file.txt";
 }

@@ -3,6 +3,7 @@ package steps;
 import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
 import pages.AllOffersPage;
+import util.Config;
 
 public class AllOffersSteps {
     Page page;

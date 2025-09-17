@@ -1,0 +1,48 @@
+<!--<?xml version="1.0" encoding="UTF-8"?>-->
+<!--<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">-->
+<!--<suite name="UI Tests Suite" parallel="tests" thread-count="6">-->
+<!--    &lt;!&ndash; Desktop Chrome &ndash;&gt;-->
+<!--    <test name="Chrome Desktop">-->
+<!--        <parameter name="browser" value="chromium"/>-->
+<!--        <parameter name="device" value="desktop"/>-->
+<!--        <classes>-->
+<!--            <class name="tests.FilterOffersTest"/>-->
+<!--            <class name="tests.LocationFilterTest"/>-->
+<!--            <class name="tests.LocationTabsTest"/>-->
+<!--            <class name="tests.ProductDetailsTest"/>-->
+<!--            <class name="tests.SiteSearchTest"/>-->
+<!--            <class name="tests.CurrencyConvertorTest"/>-->
+<!--            <class name="tests.ChatbotInteractionTest"/>-->
+<!--        </classes>-->
+<!--    </test>-->
+
+<!--    &lt;!&ndash; Firefox Desktop &ndash;&gt;-->
+<!--    <test name="Firefox Desktop">-->
+<!--        <parameter name="browser" value="firefox"/>-->
+<!--        <parameter name="device" value="desktop"/>-->
+<!--        <classes>-->
+<!--            <class name="tests.FilterOffersTest"/>-->
+<!--            <class name="tests.LocationFilterTest"/>-->
+<!--            <class name="tests.LocationTabsTest"/>-->
+<!--            <class name="tests.ProductDetailsTest"/>-->
+<!--            <class name="tests.SiteSearchTest"/>-->
+<!--            <class name="tests.CurrencyConvertorTest"/>-->
+<!--            <class name="tests.ChatbotInteractionTest"/>-->
+<!--        </classes>-->
+<!--    </test>-->
+
+<!--    &lt;!&ndash; WebKit Mobile &ndash;&gt;-->
+<!--    <test name="WebKit Mobile">-->
+<!--        <parameter name="browser" value="webkit"/>-->
+<!--        <parameter name="device" value="mobile"/>-->
+<!--        <classes>-->
+<!--            <class name="tests.FilterOffersTest"/>-->
+<!--            <class name="tests.LocationFilterTest"/>-->
+<!--            <class name="tests.LocationTabsTest"/>-->
+<!--            <class name="tests.ProductDetailsTest"/>-->
+<!--            <class name="tests.SiteSearchTest"/>-->
+<!--            <class name="tests.CurrencyConvertorTest"/>-->
+<!--            <class name="tests.ChatbotInteractionTest"/>-->
+<!--        </classes>-->
+<!--    </test>-->
+<!--</suite>-->

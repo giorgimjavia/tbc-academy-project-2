@@ -1,8 +1,14 @@
 package steps;
 
+import com.microsoft.playwright.FrameLocator;
+import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
+import com.microsoft.playwright.assertions.PlaywrightAssertions;
+import com.microsoft.playwright.options.WaitForSelectorState;
 import data.Constants;
+import org.testng.Assert;
 import pages.HomePage;
+import util.Config;
 
 import java.io.File;
 
@@ -62,11 +68,12 @@ public class HomeSteps {
     }
 
     public HomeSteps validateEmptyResults() {
-        // Playwright style assertion (instead of shouldHave)
-        String text = homePage.emptyResult.innerText();
-        if (!text.contains(Constants.EMPTY_RESULT_MESSAGE)) {
-            throw new AssertionError("Expected empty result message not found");
-        }
+        String actualText = homePage.emptyResult.innerText();
+        Assert.assertTrue(
+                actualText.contains(Constants.EMPTY_RESULT_MESSAGE),
+                "Expected empty result message to contain: " + Constants.EMPTY_RESULT_MESSAGE
+                        + " but found: " + actualText
+        );
         return this;
     }
 
@@ -81,17 +88,10 @@ public class HomeSteps {
     }
 
     public HomeSteps validateListResults() {
-        int count = homePage.resultsList.count();
-        if (count <= 0) {
-            throw new AssertionError("Expected results list to have items");
-        }
-        boolean hasMatch = homePage.resultsList
-                .allInnerTexts()
-                .stream()
-                .anyMatch(text -> text.contains(Constants.SEARCH_DATA));
-        if (!hasMatch) {
-            throw new AssertionError("Expected search result not found: " + Constants.SEARCH_DATA);
-        }
+        Assert.assertFalse(homePage.resultsList.count() > 0, "Results list is empty");
+        Assert.assertFalse( homePage.resultsList.filter(new Locator.FilterOptions().setHasText(Constants.SEARCH_DATA))
+                .first() .isVisible(),
+                "Expected result with text: " + Constants.SEARCH_DATA + " not found" );
         return this;
     }
 
@@ -136,19 +136,27 @@ public class HomeSteps {
     }
 
     public HomeSteps sendMessageToChatbot(String value) {
-        page.frameLocator(homePage.chatbotIFrame)
-                .locator(homePage.chatbotInput.selector())
-                .fill(value + "\n"); // simulate ENTER
+        page.frameLocator("iframe[name='Messaging window']")
+                .locator("#composer-input")
+                .fill(value);
+
+        page.frameLocator("iframe[name='Messaging window']")
+                .locator("#composer-input")
+                .press("Enter");
         return this;
     }
 
     public HomeSteps uploadingFile(File file) {
-        homePage.uploadFileInput.setInputFiles(file.toPath());
+        FrameLocator frame = page.frameLocator("iframe[name='Messaging window']");
+        frame.locator("input[type='file']")
+                .setInputFiles(file.toPath());
         return this;
     }
 
     public HomeSteps closeChatbot() {
-        homePage.closeChatbotBtn.click();
+        FrameLocator frame = page.frameLocator("iframe[name='Messaging window']");
+        Locator closeButton = frame.locator("button[aria-label='Close']");
+        closeButton.click();
         return this;
     }
 }
