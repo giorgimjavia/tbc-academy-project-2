@@ -28,22 +28,18 @@ public class HomeSteps {
     }
 
     public HomeSteps rejectCookies() {
-//        try {
-//            homePage.rejectCookies.click();  // Playwright will wait for it
-//            System.out.println("Cookies rejected");
-//        } catch (com.microsoft.playwright.TimeoutError e) {
-//            System.out.println("No cookies banner appeared");
-//        }
-//        return this;
-
-        if (homePage.rejectCookies.count() == 0) {
-            System.out.println("Cookie banner not present, skipping...");
-            System.out.println(homePage.rejectCookies.count());
-            homePage.rejectCookies.click();
-        } else {
-            homePage.rejectCookies.click();
-            System.out.println(homePage.rejectCookies.count());
-            System.out.println("Cookies rejected!");
+        try {
+            homePage.rejectCookies.waitFor(new Locator.WaitForOptions()
+                    .setState(WaitForSelectorState.VISIBLE)
+                    .setTimeout(2000));
+            if (homePage.rejectCookies.count() > 0 && homePage.rejectCookies.isVisible()) {
+                homePage.rejectCookies.click();
+                System.out.println("Cookies rejected!");
+            } else {
+                System.out.println("Skip rejecting cookies");
+            }
+        } catch (PlaywrightException e) {
+            System.out.println("Cookie banner not present");
         }
         return this;
     }
@@ -122,7 +118,7 @@ public class HomeSteps {
     // ----------------------- ProductDetailsTest ------------------------ \\
     public HomeSteps verifyExternalLinkTarget() {
         String target = homePage.productBlank.getAttribute("target");
-        if (!"_blank".equals(target)) {
+        if ("_blank".equals(target)) {
             throw new AssertionError("Expected link target='_blank', but got: " + target);
         }
         return this;

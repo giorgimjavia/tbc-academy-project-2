@@ -11,12 +11,13 @@ public class BaseTest {
     BrowserContext context;
     public static Page page;
 
+
     @BeforeClass
     public void setUp() {
         playwright = Playwright.create();
         BrowserType.LaunchOptions launchOptions = new BrowserType.LaunchOptions();
         launchOptions.setHeadless(false);
-        launchOptions.setSlowMo(500);
+//        launchOptions.setSlowMo(500);
         browser = playwright.chromium().launch(launchOptions);
         context = browser.newContext();
         page =  context.newPage();
