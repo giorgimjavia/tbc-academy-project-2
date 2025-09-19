@@ -1,23 +1,82 @@
-<!--<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">-->
-<!--<suite name="ChromiumSingleClassSuite" parallel="tests" thread-count="2">-->
-
-<!--    &lt;!&ndash; Desktop &ndash;&gt;-->
-<!--    <test name="Desktop">-->
-<!--        <parameter name="device" value="desktop"/>-->
-<!--        <parameter name="headless" value="true"/>-->
-<!--        <classes>-->
-<!--            <class name="tests.LocationFilterTest"/>-->
-<!--        </classes>-->
-<!--    </test>-->
-
-<!--    &lt;!&ndash; Mobile &ndash;&gt;-->
-<!--    <test name="Mobile">-->
-<!--        <parameter name="device" value="mobile"/>-->
-<!--        <parameter name="headless" value="true"/>-->
-<!--        <classes>-->
-<!--            <class name="tests.LocationFilterTest"/>-->
-<!--        </classes>-->
-<!--    </test>-->
-
-<!--</suite>-->
-
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="UI Tests Suite" parallel="classes" thread-count="12">
+    <test name="Desktop Chromium">
+        <parameter name="device" value="desktop"/>
+        <parameter name="browser" value="chromium"/>
+        <classes>
+            <class name="tests.FilterOffersTest"/>
+            <class name="tests.LocationFilterTest"/>
+            <class name="tests.LocationTabsTest"/>
+            <class name="tests.ProductDetailsTest"/>
+            <class name="tests.SiteSearchTest"/>
+            <class name="tests.CurrencyConvertorTest"/>
+            <class name="tests.ChatbotInteractionTest"/>
+        </classes>
+    </test>
+    <test name="Desktop Firefox">
+        <parameter name="device" value="desktop"/>
+        <parameter name="browser" value="firefox"/>
+        <classes>
+            <class name="tests.FilterOffersTest"/>
+            <class name="tests.LocationFilterTest"/>
+            <class name="tests.LocationTabsTest"/>
+            <class name="tests.ProductDetailsTest"/>
+            <class name="tests.SiteSearchTest"/>
+            <class name="tests.CurrencyConvertorTest"/>
+            <class name="tests.ChatbotInteractionTest"/>
+        </classes>
+    </test>
+    <test name="Desktop WebKit">
+        <parameter name="device" value="desktop"/>
+        <parameter name="browser" value="webkit"/>
+        <classes>
+            <class name="tests.FilterOffersTest"/>
+            <class name="tests.LocationFilterTest"/>
+            <class name="tests.LocationTabsTest"/>
+            <class name="tests.ProductDetailsTest"/>
+            <class name="tests.SiteSearchTest"/>
+            <class name="tests.CurrencyConvertorTest"/>
+            <class name="tests.ChatbotInteractionTest"/>
+        </classes>
+    </test>
+    <test name="Mobile Chromium">
+        <parameter name="device" value="mobile"/>
+        <parameter name="browser" value="chromium"/>
+        <classes>
+            <class name="tests.FilterOffersTest"/>
+            <class name="tests.LocationFilterTest"/>
+            <class name="tests.LocationTabsTest"/>
+            <class name="tests.ProductDetailsTest"/>
+            <class name="tests.SiteSearchTest"/>
+            <class name="tests.CurrencyConvertorTest"/>
+            <class name="tests.ChatbotInteractionTest"/>
+        </classes>
+    </test>
+    <test name="Mobile Firefox">
+        <parameter name="device" value="mobile"/>
+        <parameter name="browser" value="firefox"/>
+        <classes>
+            <class name="tests.FilterOffersTest"/>
+            <class name="tests.LocationFilterTest"/>
+            <class name="tests.LocationTabsTest"/>
+            <class name="tests.ProductDetailsTest"/>
+            <class name="tests.SiteSearchTest"/>
+            <class name="tests.CurrencyConvertorTest"/>
+            <class name="tests.ChatbotInteractionTest"/>
+        </classes>
+    </test>
+    <test name="Mobile WebKit">
+        <parameter name="device" value="mobile"/>
+        <parameter name="browser" value="webkit"/>
+        <classes>
+            <class name="tests.FilterOffersTest"/>
+            <class name="tests.LocationFilterTest"/>
+            <class name="tests.LocationTabsTest"/>
+            <class name="tests.ProductDetailsTest"/>
+            <class name="tests.SiteSearchTest"/>
+            <class name="tests.CurrencyConvertorTest"/>
+            <class name="tests.ChatbotInteractionTest"/>
+        </classes>
+    </test>
+</suite>

@@ -14,18 +14,30 @@ public class AllOffersSteps {
         this.allOffersPage = new AllOffersPage(page);
     }
 
-    public AllOffersSteps checkAnyCategoryInOffers(String categoryName) {
+    public AllOffersSteps checkAnyCategoryInOffers(String mainCategoryTitle, String subCategoryTitle) {
         if (Config.isMobileDevice()) {
             allOffersPage.mobileFilter.click();
+
+            allOffersPage.mobileCategoryNamesFilter
+                    .filter(new Locator.FilterOptions().setHasText(mainCategoryTitle))
+                    .first()
+                    .click();
+
             allOffersPage.mobileOffersCheckboxes
-                    .filter(new Locator.FilterOptions().setHasText(categoryName))
+                    .filter(new Locator.FilterOptions().setHasText(subCategoryTitle))
                     .first()
                     .click(new Locator.ClickOptions().setForce(true));
+
             allOffersPage.mobileApplyFilter.click();
 
         } else {
+            allOffersPage.categoryNamesFilter
+                    .filter(new Locator.FilterOptions().setHasText(mainCategoryTitle))
+                    .first()
+                    .click();
+
             allOffersPage.offersCheckboxes
-                    .filter(new Locator.FilterOptions().setHasText(categoryName))
+                    .filter(new Locator.FilterOptions().setHasText(subCategoryTitle))
                     .first()
                     .click();
         }

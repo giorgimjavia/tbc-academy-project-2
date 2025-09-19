@@ -9,6 +9,8 @@ public class AllOffersPage {
             mobileOffersCheckboxes,
             offerCards,
             mobileFilter,
+            categoryNamesFilter,
+            mobileCategoryNamesFilter,
             mobileApplyFilter;
 
     public AllOffersPage(Page page) {
@@ -17,5 +19,7 @@ public class AllOffersPage {
         this.offerCards = page.locator("//div[@class ='marketing__cards-list ng-star-inserted']//a");
         this.mobileFilter = page.locator("//div[@class = 'marketing__filter-chip__title']");
         this.mobileApplyFilter = page.locator("//button[text() ='Filter']");
+        this.categoryNamesFilter = page.locator("//h3[@class ='filter__title ng-star-inserted']");
+        this.mobileCategoryNamesFilter = page.locator("//ng-component[contains(@class,'cdk-dialog-container')]//h3[@class ='filter__title ng-star-inserted']");
     }
 }

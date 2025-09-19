@@ -22,7 +22,7 @@ public class FilterOffersTest extends BaseTest {
 
 
     @Test(dataProvider = "offerFilters", dataProviderClass = OffersDataSupplier.class)
-    public void filterAndResetResultedOffersTest(String filterCategory) {
+    public void filterAndResetResultedOffersTest(String mainCategory, String subCategory) {
         homeSteps
                 .openHomePage()
                 .rejectCookies()
@@ -31,8 +31,8 @@ public class FilterOffersTest extends BaseTest {
         offersSteps
                 .navigateToAllOffersPage();
         allOffersSteps
-                .checkAnyCategoryInOffers(filterCategory)
+                .checkAnyCategoryInOffers(mainCategory, subCategory)
                 .validateListUpdate()
-                .uncheckSelectedCategory(filterCategory);
+                .uncheckSelectedCategory(subCategory);
     }
 }
