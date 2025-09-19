@@ -1,6 +1,7 @@
 package tests;
 
 import data.Constants;
+import data.LocationDataProvider;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import runners.BaseTest;
@@ -17,15 +18,15 @@ public class LocationFilterTest extends BaseTest {
         locationsSteps = new LocationsSteps(page);
     }
 
-    @Test()
-    public void validateCityAndLocationFilterTest() {
+    @Test(dataProvider = "locationDataProvider", dataProviderClass = LocationDataProvider.class)
+    public void validateCityAndLocationFilterTest(String city, String address) {
         homeSteps
                 .openHomePage()
                 .rejectCookies()
                 .openMegaMenuNavbar()
                 .navigateToLocationsPage();
         locationsSteps
-                .chooseCityWithDropdown(Constants.CITY_DATA)
-                .searchLocationInSearchBar(Constants.CITY_LOCATION_DATA);
+                .chooseCityWithDropdown(city)
+                .searchLocationInSearchBar(address);
     }
 }

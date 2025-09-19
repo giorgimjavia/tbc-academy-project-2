@@ -1,5 +1,6 @@
 package tests;
 
+import data.OffersDataSupplier;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import runners.BaseTest;
@@ -19,8 +20,9 @@ public class FilterOffersTest extends BaseTest {
         allOffersSteps = new AllOffersSteps(page);
     }
 
-    @Test()
-    public void filterAndResetResultedOffersTest() {
+
+    @Test(dataProvider = "offerFilters", dataProviderClass = OffersDataSupplier.class)
+    public void filterAndResetResultedOffersTest(String filterCategory) {
         homeSteps
                 .openHomePage()
                 .rejectCookies()
@@ -29,8 +31,8 @@ public class FilterOffersTest extends BaseTest {
         offersSteps
                 .navigateToAllOffersPage();
         allOffersSteps
-                .checkAnyCategoryInOffers()
+                .checkAnyCategoryInOffers(filterCategory)
                 .validateListUpdate()
-                .uncheckSelectedCategory();
+                .uncheckSelectedCategory(filterCategory);
     }
 }

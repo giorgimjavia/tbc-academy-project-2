@@ -3,23 +3,15 @@ package visuals;
 import com.github.romankh3.image.comparison.ImageComparison;
 import com.github.romankh3.image.comparison.model.ImageComparisonResult;
 import com.github.romankh3.image.comparison.model.ImageComparisonState;
-import com.microsoft.playwright.Browser;
 import com.microsoft.playwright.Page;
 import org.testng.Assert;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import runners.BaseTest;
-import tests.LocationFilterTest;
 import tests.SiteSearchTest;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
 
 public class VisualTests extends SiteSearchTest {
     @Test

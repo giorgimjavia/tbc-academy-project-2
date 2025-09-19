@@ -3,6 +3,7 @@ package steps;
 import com.microsoft.playwright.FrameLocator;
 import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
+import com.microsoft.playwright.PlaywrightException;
 import com.microsoft.playwright.assertions.PlaywrightAssertions;
 import com.microsoft.playwright.options.WaitForSelectorState;
 import data.Constants;
@@ -27,7 +28,23 @@ public class HomeSteps {
     }
 
     public HomeSteps rejectCookies() {
-        homePage.rejectCookies.click();
+//        try {
+//            homePage.rejectCookies.click();  // Playwright will wait for it
+//            System.out.println("Cookies rejected");
+//        } catch (com.microsoft.playwright.TimeoutError e) {
+//            System.out.println("No cookies banner appeared");
+//        }
+//        return this;
+
+        if (homePage.rejectCookies.count() == 0) {
+            System.out.println("Cookie banner not present, skipping...");
+            System.out.println(homePage.rejectCookies.count());
+            homePage.rejectCookies.click();
+        } else {
+            homePage.rejectCookies.click();
+            System.out.println(homePage.rejectCookies.count());
+            System.out.println("Cookies rejected!");
+        }
         return this;
     }
 

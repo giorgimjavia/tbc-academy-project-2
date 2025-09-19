@@ -14,6 +14,7 @@ public class HomePage {
             hamburgerMenu,
             productBlank,
             productBlankButton,
+            cookiesBanner,
             rejectCookies,
             quickActionBtn,
             chatbotBtn,
@@ -35,6 +36,7 @@ public class HomePage {
         this.hamburgerMenu = page.locator("//button[contains(@class, 'hamburger-menu')]");
         this.productBlank = page.locator("//a[contains(@href, 'tbcconcept') and @target='_blank']");
         this.productBlankButton = page.locator("//a[contains(@href, 'tbcconcept') and @target='_blank']//button[text()='Read more']");
+        this.cookiesBanner = page.locator("//div[@class ='tbcx-pw-cookie-consent']");
         this.rejectCookies = page.locator("//button[text()=' Reject All ']");
         this.quickActionBtn = page.locator("//div[@class='quick-action-item']//button[contains(@class, 'primary')]");
         this.chatbotBtn = page.locator("//div[@class='quick-action-item']//button[contains(@class, 'secondary')]");

@@ -2,10 +2,7 @@ package runners;
 
 import com.microsoft.playwright.*;
 import data.Constants;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Optional;
-import org.testng.annotations.Parameters;
+import org.testng.annotations.*;
 import util.Config;
 
 public class BaseTest {
@@ -26,12 +23,14 @@ public class BaseTest {
         page.navigate(Constants.TBC_URL);
     }
 
+
     @AfterClass
     public void tearDown() {
         context.close();
         browser.close();
         playwright.close();
     }
+
 //protected Playwright playwright;
 //    protected Browser browser;
 //    protected BrowserContext context;
