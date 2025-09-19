@@ -132,17 +132,17 @@ public class HomeSteps {
 
     // ----------------------- ProductDetailsTest ------------------------ \\
     public HomeSteps verifyExternalLinkTarget() {
-        String target = homePage.productBlank.getAttribute("target");
-        if ("_blank".equals(target)) {
-            throw new AssertionError("Expected link target='_blank', but got: " + target);
+        String target = homePage.productBlank.nth(1).getAttribute("target");
+        if (!"_blank".equals(target)) {
+            throw new AssertionError(target);
         }
         return this;
     }
 
     public HomeSteps verifyCTAButton() {
-        String text = homePage.productBlankButton.innerText();
-        if (!text.contains(Constants.READ_MORE_TXT)) {
-            throw new AssertionError("CTA button text mismatch. Found: " + text);
+        String text = homePage.productBlankButton.first().innerText();
+        if (!text.toUpperCase().contains(Constants.READ_MORE_TXT.toUpperCase())) {
+            throw new AssertionError(text);
         }
         return this;
     }

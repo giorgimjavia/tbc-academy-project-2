@@ -13,7 +13,7 @@ public class BaseTest {
 
     @BeforeClass
     @Parameters("device")
-    public void setUp(@Optional("mobile") String device) {
+    public void setUp(@Optional("desktop") String device) {
         if ("mobile".equalsIgnoreCase(device)) {
             Config.setMobileDevice(true);
         } else {
