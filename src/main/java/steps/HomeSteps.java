@@ -4,7 +4,6 @@ import com.microsoft.playwright.FrameLocator;
 import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
 import com.microsoft.playwright.PlaywrightException;
-import com.microsoft.playwright.assertions.PlaywrightAssertions;
 import com.microsoft.playwright.options.WaitForSelectorState;
 import data.Constants;
 import org.testng.Assert;
@@ -34,7 +33,6 @@ public class HomeSteps {
                     .setTimeout(2000));
             if (homePage.rejectCookies.count() > 0 && homePage.rejectCookies.isVisible()) {
                 homePage.rejectCookies.click();
-                System.out.println("Cookies rejected!");
             } else {
                 System.out.println("Skip rejecting cookies");
             }
@@ -51,21 +49,6 @@ public class HomeSteps {
             homePage.megaMenuNavbar.first().hover();
         }
         return this;
-
-//        rejectCookies();
-//        if (Config.isMobileDevice()) {
-//            homePage.hamburgerMenu.click();
-//            homePage.megaMenuNavbar.first().waitFor(
-//                    new Locator.WaitForOptions().setState(WaitForSelectorState.VISIBLE)
-//            );
-//            homePage.megaMenuNavbar.first().click();
-//            System.out.println("Mobile menu opened!");
-//        } else {
-//            homePage.megaMenuNavbar.first().hover();
-//            System.out.println("Desktop mega menu hovered!");
-//        }
-
-//        return this;
     }
 
     public HomeSteps navigateToLocationsPage() {
@@ -99,9 +82,7 @@ public class HomeSteps {
         String actualText = homePage.emptyResult.innerText();
         Assert.assertTrue(
                 actualText.contains(Constants.EMPTY_RESULT_MESSAGE),
-                "Expected empty result message to contain: " + Constants.EMPTY_RESULT_MESSAGE
-                        + " but found: " + actualText
-        );
+                "Expected empty result message to contain: " + Constants.EMPTY_RESULT_MESSAGE);
         return this;
     }
 
