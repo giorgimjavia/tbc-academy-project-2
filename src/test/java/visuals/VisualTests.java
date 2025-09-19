@@ -28,7 +28,7 @@ public class VisualTests extends SiteSearchTest {
         File baselineFile = new File(baselinePath);
 
         if (!baselineFile.exists()) {
-            System.out.println("⚠️ Baseline missing. Copy " + testPath + " to baseline as the reference image.");
+            System.out.println("Baseline missing. Copy " + testPath + " to baseline as the reference image.");
             return;
         }
 

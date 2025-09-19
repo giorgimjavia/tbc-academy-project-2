@@ -51,6 +51,21 @@ public class HomeSteps {
             homePage.megaMenuNavbar.first().hover();
         }
         return this;
+
+//        rejectCookies();
+//        if (Config.isMobileDevice()) {
+//            homePage.hamburgerMenu.click();
+//            homePage.megaMenuNavbar.first().waitFor(
+//                    new Locator.WaitForOptions().setState(WaitForSelectorState.VISIBLE)
+//            );
+//            homePage.megaMenuNavbar.first().click();
+//            System.out.println("Mobile menu opened!");
+//        } else {
+//            homePage.megaMenuNavbar.first().hover();
+//            System.out.println("Desktop mega menu hovered!");
+//        }
+
+//        return this;
     }
 
     public HomeSteps navigateToLocationsPage() {
